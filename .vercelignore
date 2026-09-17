@@ -1,0 +1,7 @@
+backend-local/
+docs/
+tests/
+scripts/
+AGENTS.md
+CLAUDE.md
+.env*

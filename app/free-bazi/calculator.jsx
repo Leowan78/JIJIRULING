@@ -1,0 +1,121 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import styles from "./calculator.module.css";
+
+const elements = ["Wood", "Fire", "Earth", "Metal", "Water"];
+const text = (value) => typeof value === "string" && value.length <= 3000;
+const texts = (value) => Array.isArray(value) && value.length <= 20 && value.every(text);
+function validResult(value) {
+  const c = value?.chart, e = value?.explanation;
+  return c && text(c.rulesVersion) && typeof c.complete === "boolean" && texts(c.warnings)
+    && text(c.dayMaster?.stem) && text(c.dayMaster?.element) && text(c.dayMaster?.polarity)
+    && elements.every((key) => Number.isInteger(c.elements?.[key]) && c.elements[key] >= 0 && c.elements[key] <= 8)
+    && Array.isArray(c.pillars) && c.pillars.length === 4
+    && c.pillars.every((p, i) => p.key === ["year", "month", "day", "hour"][i] && text(p.label)
+      && [p.stem, p.branch, p.stemElement, p.branchElement].every((v) => v === null || text(v)))
+    && ["available", "unavailable", "disabled"].includes(e?.status)
+    && (e.status !== "available" || (text(e.summary) && texts(e.strengths) && texts(e.reflections)));
+}
+const errors = {
+  INVALID_INPUT: "Check your birth details and consent, then try again.",
+  INVALID_PLACE: "Please search again and select a city from the results.",
+  RATE_LIMITED: "Too many requests. Please wait a moment before trying again.",
+  UNSUPPORTED_DATE: "This date is outside the supported range.",
+  LOCAL_TIME: "This local time is ambiguous or does not exist because of a clock change. Check the time or choose unknown birth time for a partial chart.",
+};
+async function post(url, body, signal) {
+  const response = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), signal, cache: "no-store" });
+  const data = await response.json();
+  if (!response.ok) throw new Error(errors[data?.error?.code] || "The service is unavailable. Please try again later.");
+  return data;
+}
+
+export default function Calculator() {
+  const [birthDate, setBirthDate] = useState("");
+  const [birthTime, setBirthTime] = useState("");
+  const [unknown, setUnknown] = useState(false);
+  const [query, setQuery] = useState("");
+  const [place, setPlace] = useState(null);
+  const [places, setPlaces] = useState([]);
+  const [consent, setConsent] = useState(false);
+  const [searchStatus, setSearchStatus] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState(null);
+  const searchRequest = useRef(null), chartRequest = useRef(null);
+  useEffect(() => () => { searchRequest.current?.abort(); chartRequest.current?.abort(); }, []);
+  function edit() {
+    searchRequest.current?.abort(); chartRequest.current?.abort();
+    setPlaces([]); setSearchStatus(""); setLoading(false); setResult(null); setError("");
+  }
+  async function search() {
+    edit(); setPlace(null);
+    const value = query.trim();
+    if (value.length < 2 || value.length > 80) { setSearchStatus("Enter 2–80 characters to search for a city."); return; }
+    const request = new AbortController(); searchRequest.current = request;
+    setSearchStatus("Searching cities…");
+    try {
+      const data = await post("/api/places", { query: value }, request.signal);
+      if (request.signal.aborted) return;
+      if (!Array.isArray(data?.places) || data.places.length > 30 || !data.places.every((p) => text(p.id) && text(p.label))) throw new Error();
+      setPlaces(data.places); setSearchStatus(data.places.length ? "Choose your city below." : "No cities found. Try a nearby city or include the country.");
+    } catch (err) { if (!request.signal.aborted) setSearchStatus(errors[err?.code] || "City search is unavailable. Please try again."); }
+  }
+  async function calculate(event) {
+    event.preventDefault(); edit();
+    const date = new Date(`${birthDate}T00:00:00Z`);
+    const today = new Date();
+    const cutoff = `${today.getUTCFullYear() - 18}-${String(today.getUTCMonth() + 1).padStart(2, "0")}-${String(today.getUTCDate()).padStart(2, "0")}`;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(birthDate) || Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== birthDate || birthDate < "1900-01-01" || birthDate > cutoff) {
+      setError("Enter a valid Gregorian birth date from 1900 onward. This service is for adults aged 18 or older."); return;
+    }
+    if (!unknown && !/^([01]\d|2[0-3]):[0-5]\d$/.test(birthTime)) { setError("Enter your birth time or select ‘I don’t know my birth time’."); return; }
+    if (!place || !consent) { setError("Select a city from search results and agree to the privacy consent."); return; }
+    const request = new AbortController(); chartRequest.current = request; setLoading(true);
+    try {
+      const data = await post("/api/bazi", { birthDate, timeKnown: !unknown, birthTime: unknown ? null : birthTime, placeId: place.id, consent: true }, request.signal);
+      if (request.signal.aborted) return;
+      if (!validResult(data)) throw new Error();
+      setResult(data);
+    } catch (err) {
+      if (!request.signal.aborted) setError(Object.values(errors).includes(err.message) ? err.message : "The calculator is unavailable. Please try again later.");
+    } finally { if (!request.signal.aborted) setLoading(false); }
+  }
+  return <div className={styles.shell}>
+    <header className={styles.intro}><p className="eyebrow">A moment of self-discovery</p><h1>Your birth chart.<br /><em>A new perspective.</em></h1><p>Explore your Four Pillars and Five Elements with a free BaZi calculation. A cultural lens for reflection, not a prediction of your future.</p></header>
+    <div className={styles.layout}>
+      <form className={styles.panel} onSubmit={calculate}>
+        <p className="form-kicker">Free BaZi calculator</p><h2>Begin with your birth details.</h2>
+        <p className={styles.note}>Gregorian calendar · Ages 18+ · No account required</p>
+        <div className={styles.fields}>
+          <label>Date of birth<input name="birthDate" type="date" required min="1900-01-01" value={birthDate} onChange={(e) => { edit(); setBirthDate(e.target.value); }} /></label>
+          <label>Local time of birth<input name="birthTime" type="time" required={!unknown} disabled={unknown} value={birthTime} onChange={(e) => { edit(); setBirthTime(e.target.value); }} /></label>
+        </div>
+        <label className={styles.check}><input type="checkbox" checked={unknown} onChange={(e) => { edit(); setUnknown(e.target.checked); setBirthTime(""); }} /><span>I don’t know my birth time</span></label>
+        <p className={styles.note}>Unknown times produce a partial chart. Uncertain pillars are omitted.</p>
+        <label className={styles.city}>City of birth<input name="birthPlace" value={query} maxLength={80} autoComplete="off" placeholder="City, country" aria-describedby="city-status" onChange={(e) => { edit(); setQuery(e.target.value); setPlace(null); }} /></label>
+        <button className={styles.search} type="button" onClick={search}>Search cities</button>
+        <p id="city-status" role="status" className={styles.note}>{place ? `Selected: ${place.label}` : searchStatus}</p>
+        {places.length > 0 && <ul className={styles.candidates} aria-label="City search results">{places.map((p) => <li key={p.id}><button type="button" onClick={() => { edit(); setPlace(p); setQuery(p.label); }}>{p.label}</button></li>)}</ul>}
+        <label className={styles.check}><input name="consent" type="checkbox" required checked={consent} onChange={(e) => { edit(); setConsent(e.target.checked); }} /><span>I agree to server processing of my birth details to calculate my chart. If enabled, OpenAI receives only a minimized chart for an optional explanation, not my birth date, time, or city. See our <a href="/privacy">Privacy Policy</a>.</span></label>
+        <button className="button form-submit" type="submit" disabled={loading}>{loading ? "Calculating…" : "Calculate My Chart"}<span aria-hidden="true">↗</span></button>
+        <p role="status" className={styles.note}>{loading ? "Calculating your chart. You can edit details to cancel." : ""}</p>
+        {error && <p role="alert" className={styles.error}>{error}</p>}
+      </form>
+      <div className={styles.results} aria-live="polite" aria-busy={loading}>
+        {!result ? <div className={styles.empty}><div className={styles.orbit} aria-hidden="true">木 · 火 · 土 · 金 · 水</div><p className="form-kicker">Your Four Pillars</p><h2>Room for a little<br /><em>self-understanding.</em></h2><p>Your calculated chart will appear here. No example values are used as your results.</p></div> : <>
+          <p className="form-kicker">{result.chart.complete ? "Your calculated chart" : "Your partial chart"}</p><h2>Four Pillars</h2>
+          <div className={styles.pillars}>{result.chart.pillars.map((p) => <div key={p.key}><h3>{p.label}</h3><strong>{p.stem ?? "—"}{p.branch ?? "—"}</strong><p>{p.stemElement ?? "Omitted"}<br />{p.branchElement ?? "Uncertain"}</p></div>)}</div>
+          <h3>Day Master</h3><p>{result.chart.dayMaster.stem} · {result.chart.dayMaster.polarity} {result.chart.dayMaster.element}</p>
+          <h3>Five Elements</h3><div className={styles.elements}>{elements.map((el) => <div key={el}><span>{el}</span><strong>{result.chart.elements[el]}</strong></div>)}</div>
+          <p className={styles.note}>Counts of the main stem and main branch elements in available pillars. These are not weighted strength scores.</p>
+          {result.chart.warnings.length > 0 && <ul>{result.chart.warnings.map((warning, i) => <li key={i}>{warning}</li>)}</ul>}
+          <div className={styles.explanation}><h3>Reflection</h3>{result.explanation.status === "available" ? <><p>{result.explanation.summary}</p><h4>Strengths to explore</h4><ul>{result.explanation.strengths.map((s, i) => <li key={i}>{s}</li>)}</ul><h4>Questions for reflection</h4><ul>{result.explanation.reflections.map((s, i) => <li key={i}>{s}</li>)}</ul><p className={styles.note}>AI-assisted interpretation; it may contain errors.</p></> : <p>{result.explanation.status === "disabled" ? "The optional AI explanation is not enabled." : "The optional AI explanation is unavailable."} Your calculated chart remains available above.</p>}</div>
+          <p className={styles.note}>Calculation rules: {result.chart.rulesVersion}</p>
+        </>}
+      </div>
+    </div>
+    <p className={styles.disclaimer}>For cultural education and personal reflection only. BaZi is not scientifically validated and is not medical, legal, financial, or other professional advice. City data: <a href="https://www.geonames.org/">GeoNames</a>, adapted under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+  </div>;
+}
