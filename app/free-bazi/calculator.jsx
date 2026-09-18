@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./calculator.module.css";
 import BirthPicker from "./birth-picker";
+import Report from "./report";
 
 const elements = ["Wood", "Fire", "Earth", "Metal", "Water"];
 const text = (value) => typeof value === "string" && value.length <= 3000;
@@ -32,7 +33,7 @@ async function post(url, body, signal) {
   return data;
 }
 
-export default function Calculator() {
+export default function Calculator({ embedded = false }) {
   const [name, setName] = useState("");
   const [picker, setPicker] = useState(null);
   const [birthDate, setBirthDate] = useState("");
@@ -47,6 +48,8 @@ export default function Calculator() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const searchRequest = useRef(null), chartRequest = useRef(null);
+  const reportFocus = useRef(null), formFocus = useRef(null);
+  useEffect(() => { if (result) { reportFocus.current?.focus(); reportFocus.current?.scrollIntoView({ behavior: "auto", block: "start" }); } }, [result]);
   useEffect(() => () => { searchRequest.current?.abort(); chartRequest.current?.abort(); }, []);
   function edit() {
     searchRequest.current?.abort(); chartRequest.current?.abort();
@@ -85,11 +88,11 @@ export default function Calculator() {
       if (!request.signal.aborted) setError(Object.values(errors).includes(err.message) ? err.message : "The calculator is unavailable. Please try again later.");
     } finally { if (!request.signal.aborted) setLoading(false); }
   }
-  return <div className={styles.shell}>
+  return <div className={embedded ? styles.embedded : styles.shell}>
     {picker && <BirthPicker kind={picker} value={picker === "date" ? birthDate : birthTime} onCancel={() => setPicker(null)} onConfirm={value => { edit(); if (picker === "date") setBirthDate(value); else setBirthTime(value); setPicker(null); }} />}
-    <header className={styles.intro}><p className="eyebrow">A moment of self-discovery</p><h1>Your birth chart.<br /><em>A new perspective.</em></h1><p>Explore your Four Pillars and Five Elements with a free BaZi calculation. A cultural lens for reflection, not a prediction of your future.</p></header>
-    <div className={styles.layout}>
-      <form className={styles.panel} onSubmit={calculate}>
+    {!embedded && <header className={styles.intro}><p className="eyebrow">A moment of self-discovery</p><h1>Your birth chart.<br /><em>A new perspective.</em></h1><p>Explore your Four Pillars and Five Elements with a free BaZi calculation. A cultural lens for reflection, not a prediction of your future.</p></header>}
+    <div className={result ? styles.reportLayout : embedded ? styles.embeddedLayout : styles.layout}>
+      <form ref={formFocus} tabIndex={-1} hidden={Boolean(result)} className={`${styles.panel} ${embedded ? styles.embeddedPanel : ""}`} onSubmit={calculate}>
         <p className="form-kicker">Free BaZi calculator</p><h2>Begin with your birth details.</h2>
         <p className={styles.note}>Gregorian calendar · Ages 18+ · No account required</p>
         <label>Name (optional)<input name="displayName" autoComplete="off" maxLength={80} placeholder="How would you like to be addressed?" value={name} onChange={e => setName(e.target.value)} /></label>
@@ -109,18 +112,9 @@ export default function Calculator() {
         <p role="status" className={styles.note}>{loading ? "Calculating your chart. You can edit details to cancel." : ""}</p>
         {error && <p role="alert" className={styles.error}>{error}</p>}
       </form>
-      <div className={styles.results} aria-live="polite" aria-busy={loading}>
-        {!result ? <div className={styles.empty}><div className={styles.orbit} aria-hidden="true">木 · 火 · 土 · 金 · 水</div><p className="form-kicker">Your Four Pillars</p><h2>Room for a little<br /><em>self-understanding.</em></h2><p>Your calculated chart will appear here. No example values are used as your results.</p></div> : <>
-          <p className="form-kicker">{result.chart.complete ? "Your calculated chart" : "Your partial chart"}{name.trim() ? ` · ${name.trim()}` : ""}</p><h2>Four Pillars</h2>
-          <div className={styles.pillars}>{result.chart.pillars.map((p) => <div key={p.key}><h3>{p.label}</h3><strong>{p.stem ?? "—"}{p.branch ?? "—"}</strong><p>{p.stemElement ?? "Omitted"}<br />{p.branchElement ?? "Uncertain"}</p></div>)}</div>
-          <h3>Day Master</h3><p>{result.chart.dayMaster.stem} · {result.chart.dayMaster.polarity} {result.chart.dayMaster.element}</p>
-          <h3>Five Elements</h3><div className={styles.elements}>{elements.map((el) => <div key={el}><span>{el}</span><strong>{result.chart.elements[el]}</strong></div>)}</div>
-          <p className={styles.note}>Counts of the main stem and main branch elements in available pillars. These are not weighted strength scores.</p>
-          {result.chart.warnings.length > 0 && <ul>{result.chart.warnings.map((warning, i) => <li key={i}>{warning}</li>)}</ul>}
-          <div className={styles.explanation}><h3>Reflection</h3>{result.explanation.status === "available" ? <><p>{result.explanation.summary}</p><h4>Strengths to explore</h4><ul>{result.explanation.strengths.map((s, i) => <li key={i}>{s}</li>)}</ul><h4>Questions for reflection</h4><ul>{result.explanation.reflections.map((s, i) => <li key={i}>{s}</li>)}</ul><p className={styles.note}>AI-assisted interpretation; it may contain errors.</p></> : <p>{result.explanation.status === "disabled" ? "The optional AI explanation is not enabled." : "The optional AI explanation is unavailable."} Your calculated chart remains available above.</p>}</div>
-          <p className={styles.note}>Calculation rules: {result.chart.rulesVersion}</p>
-        </>}
-      </div>
+      {(!embedded || result) && <div ref={reportFocus} tabIndex={-1} className={styles.results} aria-live="polite" aria-busy={loading}>
+        {!result ? <div className={styles.empty}><div className={styles.orbit} aria-hidden="true">木 · 火 · 土 · 金 · 水</div><p className="form-kicker">Your free report</p><h2>A clearer view of<br /><em>your starting point.</em></h2><p>Calculate your chart to explore your Four Pillars, Day Master and Five Elements, with reflection prompts and transparent calculation details.</p></div> : <Report result={result} details={{name, birthDate, birthTime, unknown, city:place?.label}} onEdit={() => { edit(); requestAnimationFrame(() => formFocus.current?.focus()); }} />}
+      </div>}
     </div>
     <p className={styles.disclaimer}>For cultural education and personal reflection only. BaZi is not scientifically validated and is not medical, legal, financial, or other professional advice. City data: <a href="https://www.geonames.org/">GeoNames</a>, adapted under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
   </div>;
