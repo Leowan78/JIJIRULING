@@ -26,7 +26,14 @@ export function SiteHeader() {
       </button>
 
       <nav id="primary-navigation" aria-label="Primary navigation">
-        <a href="/readings">Readings</a>
+        <details className="shop-menu">
+          <summary>Shop</summary>
+          <ul aria-label="Shop products">
+            <li>BaZi Readings</li>
+            <li>Compatibility</li>
+            <li>Feng Shui</li>
+          </ul>
+        </details>
         <a href="/philosophy">Philosophy</a>
         <a href="/about">About</a>
         <a href="/#faq">FAQ</a>
