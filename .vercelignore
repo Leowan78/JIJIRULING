@@ -1,4 +1,5 @@
 backend-local/
+supabase/
 docs/
 tests/
 scripts/
