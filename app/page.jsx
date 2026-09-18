@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function HomePage() {
   return (
     <main id="main-content">
@@ -48,13 +50,9 @@ export default function HomePage() {
         <div className="service-grid">
           <article className="service-card card-bazi" data-reveal="">
             <div className="card-topline"><span>01</span><span>Self knowledge</span></div>
-            <div className="service-symbol" aria-hidden="true">
-              <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="43"></circle><path d="M60 17v86M17 60h86M30 30l60 60M90 30 30 90"></path><circle cx="60" cy="60" r="8"></circle></svg>
-            </div>
-            <div className="card-copy">
-              <p className="product-name">BaZi</p>
-              <h3>Understand Yourself</h3>
-              <p>Explore your natural temperament, core strengths, and recurring energy patterns through your personal birth chart.</p>
+            <h3 className="bazi-accessible-title">BaZi — Understand Yourself</h3>
+            <div className="bazi-poster">
+              <Image src="/understand-yourself.png" width={1024} height={1536} sizes="(max-width: 760px) 90vw, (max-width: 1100px) 45vw, 30vw" alt="Ancient wisdom, modern life. Understand Yourself. Discover your true nature, strengths and life purpose through the wisdom of Chinese metaphysics. Personality insights; strengths and opportunities; life purpose guidance. Your journey inward." />
             </div>
             <p className="product-price"><span>Personal report</span><strong>$29–39</strong></p>
             <a href="#free-reading" aria-label="Explore BaZi">Start free <span aria-hidden="true">↗</span></a>

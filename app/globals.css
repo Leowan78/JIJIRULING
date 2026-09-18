@@ -1204,6 +1204,11 @@ h1 {
 }
 
 .card-compatibility { background: #d4d8d3; }
+.bazi-accessible-title { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.bazi-poster { margin-top: 0.9rem; overflow: hidden; border-radius: calc(var(--radius-lg) - 0.7rem); background: #e8ddcc; box-shadow: 0 0 0 1px rgb(57 47 42 / 8%); }
+.bazi-poster img { display: block; width: 100%; height: auto; }
+.card-bazi .product-price { margin-top: auto; padding-top: 1.15rem; }
+.card-bazi .bazi-poster { margin-bottom: 1.5rem; }
 .card-fengshui { background: #d0d4c9; }
 
 .card-topline {
