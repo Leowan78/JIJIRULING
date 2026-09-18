@@ -16,7 +16,10 @@ export default function Report({ result, details, onEdit }) {
         <div><dt>Gregorian birth date</dt><dd>{details.birthDate}</dd></div>
         <div><dt>Local birth time</dt><dd>{details.unknown ? 'Unknown · hour pillar omitted' : details.birthTime}</dd></div>
         <div><dt>Selected birth city</dt><dd>{details.city}</dd></div>
+        <div><dt>Birth time zone (IANA)</dt><dd>{chart.timeZone}</dd></div>
+        <div><dt>{details.unknown ? 'Possible UTC offsets on birth date' : 'UTC offset at birth'}</dt><dd>{chart.utcOffsets.map(offset => `UTC${offset}`).join(' / ')}</dd></div>
       </dl>
+      <p className={styles.note}>Based on the selected birth city and historical clock rules, including daylight-saving time where applicable.{details.unknown && chart.utcOffsets.length > 1 ? ' The clocks changed on this date. Without a birth time, the applicable offset cannot be determined; both are shown.' : ''}</p>
       <button className={styles.edit} type="button" onClick={onEdit}>Edit birth details</button>
       {chart.warnings.length > 0 && <aside className={styles.notice} aria-label="Calculation limitations"><strong>Before you read</strong><ul>{chart.warnings.map((warning, i) => <li key={i}>{warning}</li>)}</ul></aside>}
     </header>

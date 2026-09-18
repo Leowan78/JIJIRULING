@@ -11,6 +11,8 @@ const texts = (value) => Array.isArray(value) && value.length <= 20 && value.eve
 function validResult(value) {
   const c = value?.chart, e = value?.explanation;
   return c && text(c.rulesVersion) && typeof c.complete === "boolean" && texts(c.warnings)
+    && text(c.timeZone) && c.timeZone.length > 0 && Array.isArray(c.utcOffsets) && c.utcOffsets.length >= 1 && c.utcOffsets.length <= 2
+    && c.utcOffsets.every(offset => typeof offset === "string" && /^[+-]\d{2}:\d{2}(?::\d{2})?$/.test(offset))
     && text(c.dayMaster?.stem) && text(c.dayMaster?.element) && text(c.dayMaster?.polarity)
     && elements.every((key) => Number.isInteger(c.elements?.[key]) && c.elements[key] >= 0 && c.elements[key] <= 8)
     && Array.isArray(c.pillars) && c.pillars.length === 4
