@@ -97,8 +97,9 @@ test("keeps three homepage sections and moves the other content to secondary pag
   }
   assert.equal((html.match(/<section\b/g) || []).length, 3);
   assert.doesNotMatch(html, /A simple beginning|Sample report|id="philosophy"|id="difference"|id="closing-title"/);
-  assert.match(pages["/free-bazi"], /type="date"/);
-  assert.match(pages["/free-bazi"], /type="time"/);
+  assert.equal((pages["/free-bazi"].match(/aria-haspopup="dialog"/g) || []).length, 2);
+  assert.match(pages["/free-bazi"], /Name \(optional\)/);
+  assert.match(pages["/free-bazi"], /name="displayName"/);
   assert.match(pages["/free-bazi"], /name="consent"/);
   assert.match(pages["/free-bazi"], /Search cities/);
   assert.doesNotMatch(pages["/free-bazi"], /name="fullName"/);

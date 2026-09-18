@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./calculator.module.css";
+import BirthPicker from "./birth-picker";
 
 const elements = ["Wood", "Fire", "Earth", "Metal", "Water"];
 const text = (value) => typeof value === "string" && value.length <= 3000;
@@ -32,6 +33,8 @@ async function post(url, body, signal) {
 }
 
 export default function Calculator() {
+  const [name, setName] = useState("");
+  const [picker, setPicker] = useState(null);
   const [birthDate, setBirthDate] = useState("");
   const [birthTime, setBirthTime] = useState("");
   const [unknown, setUnknown] = useState(false);
@@ -83,14 +86,17 @@ export default function Calculator() {
     } finally { if (!request.signal.aborted) setLoading(false); }
   }
   return <div className={styles.shell}>
+    {picker && <BirthPicker kind={picker} value={picker === "date" ? birthDate : birthTime} onCancel={() => setPicker(null)} onConfirm={value => { edit(); if (picker === "date") setBirthDate(value); else setBirthTime(value); setPicker(null); }} />}
     <header className={styles.intro}><p className="eyebrow">A moment of self-discovery</p><h1>Your birth chart.<br /><em>A new perspective.</em></h1><p>Explore your Four Pillars and Five Elements with a free BaZi calculation. A cultural lens for reflection, not a prediction of your future.</p></header>
     <div className={styles.layout}>
       <form className={styles.panel} onSubmit={calculate}>
         <p className="form-kicker">Free BaZi calculator</p><h2>Begin with your birth details.</h2>
         <p className={styles.note}>Gregorian calendar · Ages 18+ · No account required</p>
+        <label>Name (optional)<input name="displayName" autoComplete="off" maxLength={80} placeholder="How would you like to be addressed?" value={name} onChange={e => setName(e.target.value)} /></label>
+        <p className={styles.note}>Your name stays on this page and is not sent to our server.</p>
         <div className={styles.fields}>
-          <label>Date of birth<input name="birthDate" type="date" required min="1900-01-01" value={birthDate} onChange={(e) => { edit(); setBirthDate(e.target.value); }} /></label>
-          <label>Local time of birth<input name="birthTime" type="time" required={!unknown} disabled={unknown} value={birthTime} onChange={(e) => { edit(); setBirthTime(e.target.value); }} /></label>
+          <div><span id="birth-date-label">Date of birth</span><button className={styles.pickerTrigger} type="button" aria-labelledby="birth-date-label birth-date-value" aria-haspopup="dialog" onClick={() => setPicker("date")}><span id="birth-date-value">{birthDate || "Select year / month / day"}</span><span aria-hidden="true">⌄</span></button></div>
+          <div><span id="birth-time-label">Local time of birth</span><button className={styles.pickerTrigger} type="button" disabled={unknown} aria-labelledby="birth-time-label birth-time-value" aria-haspopup="dialog" onClick={() => setPicker("time")}><span id="birth-time-value">{unknown ? "Unknown" : birthTime || "Select hour / minute"}</span><span aria-hidden="true">⌄</span></button></div>
         </div>
         <label className={styles.check}><input type="checkbox" checked={unknown} onChange={(e) => { edit(); setUnknown(e.target.checked); setBirthTime(""); }} /><span>I don’t know my birth time</span></label>
         <p className={styles.note}>Unknown times produce a partial chart. Uncertain pillars are omitted.</p>
@@ -105,7 +111,7 @@ export default function Calculator() {
       </form>
       <div className={styles.results} aria-live="polite" aria-busy={loading}>
         {!result ? <div className={styles.empty}><div className={styles.orbit} aria-hidden="true">木 · 火 · 土 · 金 · 水</div><p className="form-kicker">Your Four Pillars</p><h2>Room for a little<br /><em>self-understanding.</em></h2><p>Your calculated chart will appear here. No example values are used as your results.</p></div> : <>
-          <p className="form-kicker">{result.chart.complete ? "Your calculated chart" : "Your partial chart"}</p><h2>Four Pillars</h2>
+          <p className="form-kicker">{result.chart.complete ? "Your calculated chart" : "Your partial chart"}{name.trim() ? ` · ${name.trim()}` : ""}</p><h2>Four Pillars</h2>
           <div className={styles.pillars}>{result.chart.pillars.map((p) => <div key={p.key}><h3>{p.label}</h3><strong>{p.stem ?? "—"}{p.branch ?? "—"}</strong><p>{p.stemElement ?? "Omitted"}<br />{p.branchElement ?? "Uncertain"}</p></div>)}</div>
           <h3>Day Master</h3><p>{result.chart.dayMaster.stem} · {result.chart.dayMaster.polarity} {result.chart.dayMaster.element}</p>
           <h3>Five Elements</h3><div className={styles.elements}>{elements.map((el) => <div key={el}><span>{el}</span><strong>{result.chart.elements[el]}</strong></div>)}</div>

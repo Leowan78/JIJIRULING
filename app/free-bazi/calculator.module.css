@@ -1,4 +1,20 @@
 .shell { max-width: 1280px; margin: 0 auto; padding: 64px var(--page-pad); }
+.pickerTrigger { display:flex; justify-content:space-between; gap:8px; width:100%; margin:7px 0 18px; padding:12px; border:1px solid var(--line); border-radius:8px; background:#fffaf3; color:var(--ink); font:inherit; text-align:left; cursor:pointer; min-height:48px; }
+.picker { width:min(480px, calc(100vw - 24px)); max-height:90dvh; overflow:auto; margin:auto; padding:26px; border:1px solid var(--line); border-radius:22px; background:var(--stone); color:var(--ink); box-shadow:0 20px 80px #0003; }
+.picker::backdrop { background:#241d18aa; }
+.picker h2 { margin:0; font-size:1.5rem; font-weight:500; }
+.wheels { display:flex; gap:12px; }
+.wheelColumn { flex:1; min-width:0; text-align:center; font-size:.85rem; }
+.wheel { height:220px; box-sizing:border-box; overflow-y:auto; overscroll-behavior:contain; scroll-snap-type:y mandatory; padding:88px 0; margin-top:12px; border-radius:10px; background:#fffaf3; scrollbar-width:none; touch-action:pan-y; }
+.wheel::-webkit-scrollbar { display:none; }
+.wheel > div { height:44px; flex-shrink:0; display:grid; place-items:center; scroll-snap-align:center; font-size:1.15rem; color:var(--muted); cursor:pointer; }
+.wheel > .wheelSelected { color:var(--ink); background:var(--almond); font-weight:600; }
+.pickerValue { text-align:center; font-variant-numeric:tabular-nums; }
+.pickerActions { display:flex; gap:12px; position:sticky; bottom:0; background:var(--stone); padding:12px 0 0; }
+.pickerActions button { flex:1; padding:13px; border:1px solid var(--line); border-radius:10px; background:transparent; color:var(--ink); font:inherit; cursor:pointer; }
+.pickerActions button:last-child { background:var(--ink); color:var(--stone); }
+.picker :focus-visible { outline:2px solid var(--moss); outline-offset:2px; }
+@media(max-width:600px) { .picker { margin:auto auto 12px; padding:22px; } }
 .intro { max-width: 720px; margin-bottom: 42px; }
 .intro h1 { font-size: clamp(2.6rem, 5vw, 4.6rem); line-height: 1.08; letter-spacing: -.045em; font-weight: 500; }
 .intro em, .empty em { color: var(--moss); font-family: Georgia, serif; font-weight: 400; }
