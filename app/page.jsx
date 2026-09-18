@@ -60,13 +60,9 @@ export default function HomePage() {
 
           <article className="service-card card-compatibility" data-reveal="">
             <div className="card-topline"><span>02</span><span>Shared dynamics</span></div>
-            <div className="service-symbol" aria-hidden="true">
-              <svg viewBox="0 0 120 120"><circle cx="46" cy="60" r="32"></circle><circle cx="74" cy="60" r="32"></circle><path d="M60 32c11 7 18 17 18 28S71 81 60 88C49 81 42 71 42 60s7-21 18-28Z"></path></svg>
-            </div>
-            <div className="card-copy">
-              <p className="product-name">Compatibility</p>
-              <h3>Understand Your Relationships</h3>
-              <p>See how two personal energy patterns connect, communicate, support one another, and create natural friction.</p>
+            <h3 className="bazi-accessible-title">Compatibility — Understand Your Relationships</h3>
+            <div className="bazi-poster">
+              <Image src="/understand-relationships.png" width={1024} height={1536} sizes="(max-width: 900px) 90vw, 30vw" alt="Ancient wisdom, modern life. Understand Your Relationships. Gain clarity in love, family and friendships with personalized insights from Chinese wisdom. Love and compatibility; family harmony; friendship and communication. Better connections." />
             </div>
             <p className="product-price"><span>Two-person report</span><strong>$39–59</strong></p>
             <a href="#free-reading" aria-label="Explore Compatibility">Explore <span aria-hidden="true">↗</span></a>
@@ -74,13 +70,9 @@ export default function HomePage() {
 
           <article className="service-card card-fengshui" data-reveal="">
             <div className="card-topline"><span>03</span><span>Spatial harmony</span></div>
-            <div className="service-symbol" aria-hidden="true">
-              <svg viewBox="0 0 120 120"><rect x="24" y="24" width="72" height="72" rx="4"></rect><circle cx="60" cy="60" r="23"></circle><path d="M60 24v13M60 83v13M24 60h13M83 60h13M44 44l9 9M67 67l9 9M76 44l-9 9M53 67l-9 9"></path><circle cx="60" cy="60" r="5"></circle></svg>
-            </div>
-            <div className="card-copy">
-              <p className="product-name">Feng Shui</p>
-              <h3>Understand Your Space</h3>
-              <p>Discover how layout, direction, and elemental balance can shape the feeling and function of your everyday environment.</p>
+            <h3 className="bazi-accessible-title">Feng Shui — Understand Your Space</h3>
+            <div className="bazi-poster">
+              <Image src="/understand-space.png" width={1024} height={1536} sizes="(max-width: 900px) 90vw, 30vw" alt="Ancient wisdom, modern life. Understand Your Space. Create balance, harmony and positive energy in your home or office with expert feng shui guidance. Home energy optimization; health and well-being; prosperity and success. A harmonious environment." />
             </div>
             <p className="product-price"><span>Space audit</span><strong>$49–99</strong></p>
             <a href="#free-reading" aria-label="Explore Feng Shui">Explore <span aria-hidden="true">↗</span></a>
