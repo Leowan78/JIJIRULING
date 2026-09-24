@@ -4,6 +4,12 @@ const generalQuestions = [
   'What small adjustment this week could better support what matters to you?',
 ];
 
+export function zodiacLabel(branch) {
+  const index = '子丑寅卯辰巳午未申酉戌亥'.indexOf(branch ?? '');
+  if (!branch || index < 0) return 'Unavailable · year pillar uncertain';
+  return `${['Rat','Ox','Tiger','Rabbit','Dragon','Snake','Horse','Goat','Monkey','Rooster','Dog','Pig'][index]} ${'鼠牛虎兔龙蛇马羊猴鸡狗猪'[index]}`;
+}
+
 export function elementShares(counts) {
   const names = ['Wood', 'Fire', 'Earth', 'Metal', 'Water'];
   const total = names.reduce((sum, name) => sum + counts[name], 0);

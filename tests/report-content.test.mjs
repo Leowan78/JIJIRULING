@@ -1,6 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { reflectionContent, elementShares } from '../app/free-bazi/report-content.mjs';
+import { reflectionContent, elementShares, zodiacLabel } from '../app/free-bazi/report-content.mjs';
+
+test('zodiac follows calculated year and preserves an uncertain year', () => {
+  assert.equal(zodiacLabel('卯'), 'Rabbit 兔');
+  assert.equal(zodiacLabel('辰'), 'Dragon 龙');
+  assert.equal(zodiacLabel(null), 'Unavailable · year pillar uncertain');
+});
 
 test('element shares use available pillar counts and preserve ties', () => {
   const full = elementShares({Wood:1,Fire:3,Earth:3,Metal:0,Water:1});
