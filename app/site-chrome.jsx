@@ -10,14 +10,7 @@ export function SiteHeader() {
 
     <header className="site-header">
       <a className="brand" href="/" aria-label="JIJI RULING home">
-        <svg aria-hidden="true" viewBox="0 0 36 36">
-          <circle cx="18" cy="18" r="15"></circle>
-          <circle cx="18" cy="5" r="2.5"></circle>
-          <circle cx="30.4" cy="14" r="2.5"></circle>
-          <circle cx="25.7" cy="28.5" r="2.5"></circle>
-          <circle cx="10.3" cy="28.5" r="2.5"></circle>
-          <circle cx="5.6" cy="14" r="2.5"></circle>
-        </svg>
+        <img className="brand-ceramic" src="/brand-ceramic.webp" alt="" width="384" height="384" />
         <span>JIJI RULING</span>
       </a>
 
