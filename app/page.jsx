@@ -54,7 +54,7 @@ export default function HomePage() {
             <div className="bazi-poster">
               <Image src="/understand-yourself.png" width={1024} height={1536} sizes="(max-width: 760px) 90vw, (max-width: 1100px) 45vw, 30vw" alt="Ancient wisdom, modern life. Understand Yourself. Discover your true nature, strengths and life purpose through the wisdom of Chinese metaphysics. Personality insights; strengths and opportunities; life purpose guidance. Your journey inward." />
             </div>
-            <p className="product-price"><span>Personal report</span><strong>$29–39</strong></p>
+            <p className="product-price"><span>Personal report</span><strong>$29.99</strong></p>
             <a href="#free-reading" aria-label="Explore BaZi">Start free <span aria-hidden="true">↗</span></a>
           </article>
 
@@ -64,8 +64,8 @@ export default function HomePage() {
             <div className="bazi-poster">
               <Image src="/understand-relationships.png" width={1024} height={1536} sizes="(max-width: 900px) 90vw, 30vw" alt="Ancient wisdom, modern life. Understand Your Relationships. Gain clarity in love, family and friendships with personalized insights from Chinese wisdom. Love and compatibility; family harmony; friendship and communication. Better connections." />
             </div>
-            <p className="product-price"><span>Two-person report</span><strong>$39–59</strong></p>
-            <a href="#free-reading" aria-label="Explore Compatibility">Explore <span aria-hidden="true">↗</span></a>
+            <p className="product-price"><span>Two-person report</span><strong>$39.99</strong></p>
+            <a href="/compatibility" aria-label="Explore Compatibility">Explore <span aria-hidden="true">↗</span></a>
           </article>
 
           <article className="service-card card-fengshui" data-reveal="">
@@ -74,8 +74,8 @@ export default function HomePage() {
             <div className="bazi-poster">
               <Image src="/understand-space.png" width={1024} height={1536} sizes="(max-width: 900px) 90vw, 30vw" alt="Ancient wisdom, modern life. Understand Your Space. Create balance, harmony and positive energy in your home or office with expert feng shui guidance. Home energy optimization; health and well-being; prosperity and success. A harmonious environment." />
             </div>
-            <p className="product-price"><span>Space audit</span><strong>$49–99</strong></p>
-            <a href="#free-reading" aria-label="Explore Feng Shui">Explore <span aria-hidden="true">↗</span></a>
+            <p className="product-price"><span>Space audit</span><strong>$49.99</strong></p>
+            <a href="/feng-shui" aria-label="Explore Feng Shui">Explore <span aria-hidden="true">↗</span></a>
           </article>
         </div>
       </section>

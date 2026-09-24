@@ -29,9 +29,9 @@ export function SiteHeader() {
         <details className="shop-menu">
           <summary>Shop</summary>
           <ul aria-label="Shop products">
-            <li>BaZi Readings</li>
-            <li>Compatibility</li>
-            <li>Feng Shui</li>
+            <li><a href="/free-bazi">BaZi Readings</a></li>
+            <li><a href="/compatibility">Compatibility</a></li>
+            <li><a href="/feng-shui">Feng Shui</a></li>
           </ul>
         </details>
         <a href="/philosophy">Philosophy</a>
