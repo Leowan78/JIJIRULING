@@ -1,3 +1,4 @@
+import ProductPoster from "./product-poster";
 import Image from "next/image";
 
 export default function HomePage() {
@@ -12,9 +13,6 @@ export default function HomePage() {
             traditional BaZi, Five Elements, and Zodiac philosophy.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#free-reading">
-              Start Your Reading <span aria-hidden="true">↗</span>
-            </a>
             <a className="text-link" href="/philosophy">Our philosophy <span aria-hidden="true">↓</span></a>
           </div>
           <p className="hero-note">
@@ -51,19 +49,19 @@ export default function HomePage() {
           <article className="service-card card-bazi" data-reveal="">
             <div className="card-topline"><span>01</span><span>Self knowledge</span></div>
             <h3 className="bazi-accessible-title">BaZi — Understand Yourself</h3>
-            <div className="bazi-poster">
+            <ProductPoster href="/free-bazi" label="Explore Understand Yourself">
               <Image src="/understand-yourself.png" width={1024} height={1536} sizes="(max-width: 760px) 90vw, (max-width: 1100px) 45vw, 30vw" alt="Ancient wisdom, modern life. Understand Yourself. Discover your true nature, strengths and life purpose through the wisdom of Chinese metaphysics. Personality insights; strengths and opportunities; life purpose guidance. Your journey inward." />
-            </div>
+            </ProductPoster>
             <p className="product-price"><span>Personal report</span><strong>$29.99</strong></p>
-            <a href="#free-reading" aria-label="Explore BaZi">Start free <span aria-hidden="true">↗</span></a>
+            <a href="/free-bazi" aria-label="Explore BaZi">Start free <span aria-hidden="true">↗</span></a>
           </article>
 
           <article className="service-card card-compatibility" data-reveal="">
             <div className="card-topline"><span>02</span><span>Shared dynamics</span></div>
             <h3 className="bazi-accessible-title">Compatibility — Understand Your Relationships</h3>
-            <div className="bazi-poster">
+            <ProductPoster href="/compatibility" label="Explore Understand Your Relationships">
               <Image src="/understand-relationships.png" width={1024} height={1536} sizes="(max-width: 900px) 90vw, 30vw" alt="Ancient wisdom, modern life. Understand Your Relationships. Gain clarity in love, family and friendships with personalized insights from Chinese wisdom. Love and compatibility; family harmony; friendship and communication. Better connections." />
-            </div>
+            </ProductPoster>
             <p className="product-price"><span>Two-person report</span><strong>$39.99</strong></p>
             <a href="/compatibility" aria-label="Explore Compatibility">Explore <span aria-hidden="true">↗</span></a>
           </article>
@@ -71,9 +69,9 @@ export default function HomePage() {
           <article className="service-card card-fengshui" data-reveal="">
             <div className="card-topline"><span>03</span><span>Spatial harmony</span></div>
             <h3 className="bazi-accessible-title">Feng Shui — Understand Your Space</h3>
-            <div className="bazi-poster">
+            <ProductPoster href="/feng-shui" label="Explore Understand Your Space">
               <Image src="/understand-space.png" width={1024} height={1536} sizes="(max-width: 900px) 90vw, 30vw" alt="Ancient wisdom, modern life. Understand Your Space. Create balance, harmony and positive energy in your home or office with expert feng shui guidance. Home energy optimization; health and well-being; prosperity and success. A harmonious environment." />
-            </div>
+            </ProductPoster>
             <p className="product-price"><span>Space audit</span><strong>$49.99</strong></p>
             <a href="/feng-shui" aria-label="Explore Feng Shui">Explore <span aria-hidden="true">↗</span></a>
           </article>

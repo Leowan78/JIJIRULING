@@ -42,6 +42,19 @@ export function setupPage() {
 
   const navToggle = document.querySelector(".nav-toggle");
   const navigation = document.querySelector("#primary-navigation");
+  const shop = document.querySelector(".shop-menu");
+  listen(shop, "pointerenter", (event) => {
+    if (event.pointerType === "mouse") shop.open = true;
+  });
+  listen(shop, "pointerleave", (event) => {
+    if (event.pointerType === "mouse") shop.open = false;
+  });
+  listen(shop, "keydown", (event) => {
+    if (event.key === "Escape") {
+      shop.open = false;
+      shop.querySelector("summary").focus();
+    }
+  });
 
   listen(navToggle, "click", () => {
     const expanded = navToggle.getAttribute("aria-expanded") === "true";
@@ -51,6 +64,7 @@ export function setupPage() {
 
   listen(navigation, "click", (event) => {
     if (!(event.target instanceof HTMLAnchorElement)) return;
+    if (shop) shop.open = false;
     navToggle?.setAttribute("aria-expanded", "false");
     document.documentElement.classList.remove("nav-open");
   });

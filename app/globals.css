@@ -211,6 +211,7 @@ em {
   font-size: 0.85rem;
 }
 .shop-menu li { padding: 13px 0; }
+.shop-menu ul::before { content: ""; position: absolute; top: -19px; left: 0; right: 0; height: 19px; }
 .shop-menu li + li { border-top: 1px solid var(--line); }
 
 .header-cta {
@@ -2191,3 +2192,5 @@ footer {
 }
 
 .brand .brand-ceramic { display:block; width:29px; height:29px; margin-right:0.65rem; object-fit:contain; flex-shrink:0; mix-blend-mode:multiply; }
+
+.product-image-link { display:block; }.product-image-link:focus-visible { outline:3px solid var(--moss); outline-offset:-3px; }.bazi-poster img { transition:transform 250ms ease; }@media(hover:hover) and (pointer:fine){.bazi-poster:hover img { transform:scale(1.025); }}@media(prefers-reduced-motion:reduce){.bazi-poster img { transition:none; }}
