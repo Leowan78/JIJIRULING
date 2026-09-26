@@ -41,7 +41,7 @@ export default function HomePage() {
             <div className="card-topline"><span>01</span><span>Self knowledge</span></div>
             <h3 className="bazi-accessible-title">BaZi — Understand Yourself</h3>
             <ProductPoster href="/free-bazi" label="Explore Understand Yourself">
-              <Image src="/understand-yourself.png" width={1024} height={1536} sizes="(max-width: 760px) 90vw, (max-width: 1100px) 45vw, 30vw" alt="Ancient wisdom, modern life. Understand Yourself. Discover your true nature, strengths and life purpose through the wisdom of Chinese metaphysics. Personality insights; strengths and opportunities; life purpose guidance. Your journey inward." />
+              <Image src="/understand-yourself.webp" width={1024} height={1536} sizes="(max-width: 760px) 90vw, (max-width: 1100px) 45vw, 30vw" alt="Ancient wisdom, modern life. Understand Yourself. Discover your true nature, strengths and life purpose through the wisdom of Chinese metaphysics. Personality insights; strengths and opportunities; life purpose guidance. Your journey inward." />
             </ProductPoster>
             <p className="product-price"><span>Personal report</span><strong>$29.99</strong></p>
             <a href="/free-bazi" aria-label="Explore BaZi">Start free <span aria-hidden="true">↗</span></a>
@@ -51,7 +51,7 @@ export default function HomePage() {
             <div className="card-topline"><span>02</span><span>Shared dynamics</span></div>
             <h3 className="bazi-accessible-title">Compatibility — Understand Your Relationships</h3>
             <ProductPoster href="/compatibility" label="Explore Understand Your Relationships">
-              <Image src="/understand-relationships.png" width={1024} height={1536} sizes="(max-width: 900px) 90vw, 30vw" alt="Ancient wisdom, modern life. Understand Your Relationships. Gain clarity in love, family and friendships with personalized insights from Chinese wisdom. Love and compatibility; family harmony; friendship and communication. Better connections." />
+              <Image src="/understand-relationships.webp" width={1024} height={1536} sizes="(max-width: 900px) 90vw, 30vw" alt="Ancient wisdom, modern life. Understand Your Relationships. Gain clarity in love, family and friendships with personalized insights from Chinese wisdom. Love and compatibility; family harmony; friendship and communication. Better connections." />
             </ProductPoster>
             <p className="product-price"><span>Two-person report</span><strong>$39.99</strong></p>
             <a href="/compatibility" aria-label="Explore Compatibility">Explore <span aria-hidden="true">↗</span></a>
@@ -61,7 +61,7 @@ export default function HomePage() {
             <div className="card-topline"><span>03</span><span>Spatial harmony</span></div>
             <h3 className="bazi-accessible-title">Feng Shui — Understand Your Space</h3>
             <ProductPoster href="/feng-shui" label="Explore Understand Your Space">
-              <Image src="/understand-space.png" width={1024} height={1536} sizes="(max-width: 900px) 90vw, 30vw" alt="Ancient wisdom, modern life. Understand Your Space. Create balance, harmony and positive energy in your home or office with expert feng shui guidance. Home energy optimization; health and well-being; prosperity and success. A harmonious environment." />
+              <Image src="/understand-space.webp" width={1024} height={1536} sizes="(max-width: 900px) 90vw, 30vw" alt="Ancient wisdom, modern life. Understand Your Space. Create balance, harmony and positive energy in your home or office with expert feng shui guidance. Home energy optimization; health and well-being; prosperity and success. A harmonious environment." />
             </ProductPoster>
             <p className="product-price"><span>Space audit</span><strong>$49.99</strong></p>
             <a href="/feng-shui" aria-label="Explore Feng Shui">Explore <span aria-hidden="true">↗</span></a>
