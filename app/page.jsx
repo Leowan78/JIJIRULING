@@ -1,46 +1,37 @@
-import ProductPoster from "./product-poster";
 import Image from "next/image";
+import ProductPoster from "./product-poster";
+import styles from "./taste-preview/preview.module.css";
 
 export default function HomePage() {
   return (
-    <main id="main-content">
-      <section className="hero" id="top">
-        <div className="hero-copy" data-reveal="">
-          <p className="eyebrow"><span>01</span> The art of knowing yourself</p>
-          <h1>Ancient Chinese Wisdom, Reimagined For Modern Life</h1>
-          <p className="hero-lede">
-            Discover your true personality, natural traits, and life patterns through
-            traditional BaZi, Five Elements, and Zodiac philosophy.
-          </p>
-          <div className="hero-actions">
-            <a className="text-link" href="/philosophy">Our philosophy <span aria-hidden="true">↓</span></a>
+    <main id="main-content" className={styles.preview}>
+      <section className={styles.hero} id="top" aria-labelledby="preview-title">
+        <div className={styles.heroCopy}>
+          <p className={styles.eyebrow}>The art of knowing yourself</p>
+          <h1 id="preview-title"><span>Ancient Chinese Wisdom</span><span>Reimagined For Modern Life</span></h1>
+          <p className={styles.intro}>Explore your nature, relationships, and surroundings through BaZi and the Five Elements of traditional Chinese philosophy.</p>
+          <div className={styles.actions}>
+            <a className={styles.primary} href="/free-bazi">Discover your BaZi <span aria-hidden="true">↗</span></a>
+            <a className={styles.textLink} href="/philosophy">Our philosophy <span aria-hidden="true">↗</span></a>
           </div>
-          <p className="hero-note">
-            <span aria-hidden="true">○</span>
-            Personalized analysis based on your birth information. No fluff, pure insight.
-          </p>
         </div>
+        <figure className={styles.heroArt}>
+          <Image src="/images/report/ceramic-emblem.webp" alt="A glazed ceramic plate representing Wood, Fire, Earth, Metal, and Water" width={804} height={782} sizes="(max-width: 760px) 90vw, 46vw" preload />
+          <figcaption>Five elements. One individual balance.</figcaption>
+        </figure>
+      </section>
 
-        <div className="hero-art reading-panel" id="free-reading" data-reveal="">
-          <div className="reading-panel-head">
-            <div>
-              <p className="form-kicker">Free BaZi reading</p>
-              <h2>Start With Your Birth Details</h2>
-            </div>
-            <div className="mini-orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-          <p>Discover your Four Pillars, Day Master, and Five Elements through a calculated birth chart.</p>
-          <a className="button form-submit" href="/free-bazi">Open Free BaZi Calculator <span aria-hidden="true">↗</span></a>
-          <p className="form-privacy">No account required · Ages 18+</p>
-          <p className="form-prototype">Your birth details are processed on our server. Review the privacy consent before calculating.</p>
-        </div>
+      <section className={styles.freeReading} id="free-reading" aria-labelledby="free-title">
+        <div><h2 id="free-title">Your first insight starts here.</h2><p>A free birth chart with your Four Pillars, Day Master, and Five Elements.</p></div>
+        <div className={styles.readingAction}><a className={styles.primary} href="/free-bazi">Open Free BaZi Calculator <span aria-hidden="true">↗</span></a><span>No account required · Ages 18+</span></div>
+        <p className={styles.privacy}>Your birth details are processed on our server. Review the privacy consent before calculating.</p>
       </section>
 
       <section className="services section-shell" id="services" aria-labelledby="services-title">
         <div className="section-heading" data-reveal="">
           <div>
-            <p className="eyebrow"><span>02</span> Core offerings</p>
-            <h2 id="services-title">Three Ways To Understand <em>What Shapes Your Life</em></h2>
+            <p className={styles.eyebrow}>Core offerings</p>
+            <h2 id="services-title">Three Ways To Understand<br /><em>What Shapes Your Life</em></h2>
           </div>
           <p>Begin with the lens closest to you now: your inner nature, your relationships, or the space around you.</p>
         </div>
@@ -78,25 +69,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="faq section-shell" id="faq" aria-labelledby="faq-title">
-        <div className="faq-intro" data-reveal="">
-          <p className="eyebrow"><span>03</span> Common questions</p>
-          <h2 id="faq-title">A Clearer Way To <em>Begin</em></h2>
-          <p>Simple answers before you explore your personal reading.</p>
-        </div>
-        <div className="faq-list" data-reveal="">
-          <details>
-            <summary><span>Is this fortune-telling?</span><i aria-hidden="true"></i></summary>
-            <p>No. This is personality and life pattern analysis based on traditional Chinese philosophy, not future prediction.</p>
-          </details>
-          <details>
-            <summary><span>How accurate is the reading?</span><i aria-hidden="true"></i></summary>
-            <p>The result depends on your accurate birth information. It reflects your inherent personality traits and natural tendencies.</p>
-          </details>
-          <details>
-            <summary><span>Is my personal data safe?</span><i aria-hidden="true"></i></summary>
-            <p>The calculator processes birth details on our server. An optional AI explanation uses only a minimized chart. Read our Privacy Policy for details.</p>
-          </details>
+      <section className={styles.faq} id="faq" aria-labelledby="faq-title">
+        <div><h2 id="faq-title">A clearer way<br />to begin.</h2><p>Simple answers before your personal reading.</p></div>
+        <div className={styles.questions}>
+          <details><summary>Is this fortune-telling?</summary><p>No. This is personality and life pattern analysis based on traditional Chinese philosophy, not future prediction.</p></details>
+          <details><summary>How accurate is the reading?</summary><p>The result depends on your accurate birth information. It reflects your inherent personality traits and natural tendencies.</p></details>
+          <details><summary>Is my personal data safe?</summary><p>The calculator processes birth details on our server. An optional AI explanation uses only a minimized chart. Read our <a href="/privacy">Privacy Policy</a> for details.</p></details>
         </div>
       </section>
     </main>
