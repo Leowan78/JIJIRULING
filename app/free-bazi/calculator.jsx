@@ -37,6 +37,7 @@ async function post(url, body, signal) {
 
 export default function Calculator({ embedded = false }) {
   const [name, setName] = useState("");
+  const guideDialog = useRef(null);
   const [picker, setPicker] = useState(null);
   const [birthDate, setBirthDate] = useState("");
   const [birthTime, setBirthTime] = useState("");
@@ -109,13 +110,13 @@ export default function Calculator({ embedded = false }) {
         <button className={styles.search} type="button" onClick={search}>Search cities</button>
         <p id="city-status" role="status" className={styles.note}>{place ? `Selected: ${place.label}` : searchStatus}</p>
         {places.length > 0 && <ul className={styles.candidates} aria-label="City search results">{places.map((p) => <li key={p.id}><button type="button" onClick={() => { edit(); setPlace(p); setQuery(p.label); }}>{p.label}</button></li>)}</ul>}
-        <label className={styles.check}><input name="consent" type="checkbox" required checked={consent} onChange={(e) => { edit(); setConsent(e.target.checked); }} /><span>I agree to server processing of my birth details to calculate my chart. If enabled, OpenAI receives only a minimized chart for an optional explanation, not my birth date, time, or city. See our <a href="/privacy">Privacy Policy</a>.</span></label>
+        <label className={styles.check}><input name="consent" type="checkbox" required checked={consent} onChange={(e) => { edit(); setConsent(e.target.checked); }} /><span>I agree to server processing of my birth details to calculate my chart. If enabled, our server receives only a minimized chart for an optional explanation, not my birth date, time, or city. See our <a href="/privacy">Privacy Policy</a>.</span></label>
         <button className="button form-submit" type="submit" disabled={loading}>{loading ? "Calculating…" : "Calculate My Chart"}<span aria-hidden="true">↗</span></button>
         <p role="status" className={styles.note}>{loading ? "Calculating your chart. You can edit details to cancel." : ""}</p>
         {error && <p role="alert" className={styles.error}>{error}</p>}
       </form>
       {(!embedded || result) && <div ref={reportFocus} tabIndex={-1} className={styles.results} aria-live="polite" aria-busy={loading}>
-        {!result ? <div className={styles.empty}><div className={styles.orbit} aria-hidden="true">木 · 火 · 土 · 金 · 水</div><p className="form-kicker">Your free report</p><h2>A clearer view of<br /><em>your starting point.</em></h2><p>Calculate your chart to explore your Four Pillars, Day Master and Five Elements, with reflection prompts and transparent calculation details.</p></div> : <Report result={result} details={{name, birthDate, birthTime, unknown, city:place?.label}} onEdit={() => { edit(); requestAnimationFrame(() => formFocus.current?.focus()); }} />}
+        {!result ? <div className={styles.empty}><button type="button" className={styles.guideTrigger} aria-label="Enlarge Five Elements guide" aria-haspopup="dialog" onClick={() => guideDialog.current?.showModal()}><img className={styles.elementGuide} src="/five-elements-guide.webp" width="1024" height="1536" alt="Five Elements: Wood, Fire, Earth, Metal and Water, with their traditional generating and controlling cycles." /></button><dialog ref={guideDialog} className={styles.guideDialog} aria-label="Five Elements guide" onClick={() => guideDialog.current?.close()}><button type="button" className={styles.guideClose} aria-label="Restore original image size"><img src="/five-elements-guide.webp" width="1024" height="1536" alt="Five Elements: generating and controlling cycles. Click to restore original size." /></button></dialog><p className="form-kicker">Your free report</p><h2>A clearer view of<br /><em>your starting point.</em></h2><p>Calculate your chart to explore your Four Pillars, Day Master and Five Elements, with reflection prompts and transparent calculation details.</p></div> : <Report result={result} details={{name, birthDate, birthTime, unknown, city:place?.label}} onEdit={() => { edit(); requestAnimationFrame(() => formFocus.current?.focus()); }} />}
       </div>}
     </div>
     <p className={styles.disclaimer}>For cultural education and personal reflection only. BaZi is not scientifically validated and is not medical, legal, financial, or other professional advice. City data: <a href="https://www.geonames.org/">GeoNames</a>, adapted under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
