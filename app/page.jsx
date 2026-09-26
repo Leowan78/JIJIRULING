@@ -7,7 +7,7 @@ export default function HomePage() {
       <section className="hero" id="top">
         <div className="hero-copy" data-reveal="">
           <p className="eyebrow"><span>01</span> The art of knowing yourself</p>
-          <h1>Ancient Chinese Wisdom, Reimagined for Modern Life</h1>
+          <h1>Ancient Chinese Wisdom, Reimagined For Modern Life</h1>
           <p className="hero-lede">
             Discover your true personality, natural traits, and life patterns through
             traditional BaZi, Five Elements, and Zodiac philosophy.
@@ -25,7 +25,7 @@ export default function HomePage() {
           <div className="reading-panel-head">
             <div>
               <p className="form-kicker">Free BaZi reading</p>
-              <h2>Start with your birth details.</h2>
+              <h2>Start With Your Birth Details</h2>
             </div>
             <div className="mini-orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
           </div>
@@ -40,7 +40,7 @@ export default function HomePage() {
         <div className="section-heading" data-reveal="">
           <div>
             <p className="eyebrow"><span>02</span> Core offerings</p>
-            <h2 id="services-title">Three ways to understand <em>what shapes your life.</em></h2>
+            <h2 id="services-title">Three Ways To Understand <em>What Shapes Your Life</em></h2>
           </div>
           <p>Begin with the lens closest to you now: your inner nature, your relationships, or the space around you.</p>
         </div>
@@ -81,7 +81,7 @@ export default function HomePage() {
       <section className="faq section-shell" id="faq" aria-labelledby="faq-title">
         <div className="faq-intro" data-reveal="">
           <p className="eyebrow"><span>03</span> Common questions</p>
-          <h2 id="faq-title">A clearer way to <em>begin.</em></h2>
+          <h2 id="faq-title">A Clearer Way To <em>Begin</em></h2>
           <p>Simple answers before you explore your personal reading.</p>
         </div>
         <div className="faq-list" data-reveal="">

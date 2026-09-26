@@ -48,7 +48,7 @@ export default function PrivacyPage() {
         <p>We may use artificial intelligence tools to help organize submitted information, prepare drafts, translate content, or generate portions of a digital report.</p>
         <p>AI providers may process limited information on our behalf. We seek to provide only information reasonably necessary for the requested task. AI-generated content may contain errors and must not be treated as medical, legal, financial, psychological, or other professional advice.</p>
 
-        <h2>4. Cookies Analytics and Advertising</h2>
+        <h2>4. Cookies Analytics And Advertising</h2>
         <p>We use cookies and similar technologies to operate the website, remember preferences, measure performance, and support advertising.</p>
         <p>Subject to your consent where required, we may use:</p>
         <ul>
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
         <p>We do not sell personal information for money. However, disclosure of cookie identifiers and website activity to advertising providers may be considered a “sale,” “sharing,” or use for targeted advertising under certain U.S. privacy laws.</p>
         <p>You may opt out through the <strong>Your Privacy Choices</strong> or <strong>Cookie Settings</strong> link on our website.</p>
 
-        <h2>6. Legal Bases for European and UK Users</h2>
+        <h2>6. Legal Bases For European And UK Users</h2>
         <p>Where European or UK data-protection law applies, we process personal information based on:</p>
         <ul>
           <li>Performance of a contract;</li>
@@ -144,7 +144,7 @@ export default function PrivacyPage() {
         <h2>13. Third Party Services</h2>
         <p>Meta, Google, TikTok, payment processors, and other third parties process information under their own privacy policies. We are not responsible for their independent privacy practices.</p>
 
-        <h2>14. Changes to This Policy</h2>
+        <h2>14. Changes To This Policy</h2>
         <p>We may update this Privacy Policy when our services, technologies, or legal obligations change. We will update the effective date and provide additional notice where required.</p>
 
         <h2>15. Contact Us</h2>

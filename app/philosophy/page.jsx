@@ -37,7 +37,7 @@ export default function PhilosophyPage() {
         </div>
         <div className="philosophy-copy" data-reveal="">
           <p className="eyebrow"><span>02</span> Our philosophy</p>
-          <h2 id="philosophy-title">Wisdom for Self-Growth, <em>Not Prediction</em></h2>
+          <h2 id="philosophy-title">Wisdom For Self-Growth, <em>Not Prediction</em></h2>
           <p className="mission">Our mission is simple:<br />To bring ancient Chinese philosophical wisdom into modern self-development.</p>
           <p>
             We do not predict fortune or future events. Instead, we focus on personality analysis,
@@ -60,13 +60,13 @@ export default function PhilosophyPage() {
         <ol className="value-list">
           <li data-reveal="">
             <span className="value-number">01</span>
-            <h3>Rooted in Traditional Philosophy</h3>
+            <h3>Rooted In Traditional Philosophy</h3>
             <p>All systems are based on authentic ancient Chinese Five Elements and BaZi theories.</p>
             <span className="value-mark" aria-hidden="true">木</span>
           </li>
           <li data-reveal="">
             <span className="value-number">02</span>
-            <h3>Modern &amp; Easy to Understand</h3>
+            <h3>Modern &amp; Easy To Understand</h3>
             <p>We translate complex ancient knowledge into simple, clear, modern language.</p>
             <span className="value-mark" aria-hidden="true">火</span>
           </li>
@@ -78,7 +78,7 @@ export default function PhilosophyPage() {
           </li>
           <li data-reveal="">
             <span className="value-number">04</span>
-            <h3>Focus on Growth &amp; Self-Awareness</h3>
+            <h3>Focus On Growth &amp; Self-Awareness</h3>
             <p>Safe, positive, and supportive content for personal development.</p>
             <span className="value-mark" aria-hidden="true">水</span>
           </li>
@@ -88,7 +88,7 @@ export default function PhilosophyPage() {
       <section className="closing" aria-labelledby="closing-title">
         <div data-reveal="">
           <p className="eyebrow"><span>04</span> Your nature, made clearer</p>
-          <h2 id="closing-title">Wisdom to Know <em>Yourself Better</em></h2>
+          <h2 id="closing-title">Wisdom To Know <em>Yourself Better</em></h2>
           <a className="button button-light" href="/#free-reading">Start Your Reading <span aria-hidden="true">↗</span></a>
         </div>
       </section>

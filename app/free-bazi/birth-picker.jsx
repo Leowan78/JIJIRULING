@@ -24,7 +24,7 @@ export default function BirthPicker({ kind, value, onConfirm, onCancel }) {
   const days = isDate ? new Date(Date.UTC(draft[0], draft[1], 0)).getUTCDate() : 0;
   function update(i, n) { setDraft(current => { const next = [...current]; next[i] = n; if (isDate) next[2] = Math.min(next[2], new Date(Date.UTC(next[0], next[1], 0)).getUTCDate()); return next; }); }
   return <dialog className={styles.picker} ref={ref} aria-labelledby="birth-picker-title" onCancel={onCancel}>
-    <h2 id="birth-picker-title">{isDate ? "Select date of birth" : "Select local birth time"}</h2>
+    <h2 id="birth-picker-title">{isDate ? "Select Date Of Birth" : "Select Local Birth Time"}</h2>
     <p className={styles.note}>{isDate ? "Scroll to choose your Gregorian birth date." : "24-hour clock. Choose your recorded time. If unsure, cancel and select unknown birth time."}</p>
     <div className={styles.wheels}>{isDate ? <>
       <Wheel label="Year" values={range(1900, new Date().getUTCFullYear() - 18)} value={draft[0]} onChange={n => update(0, n)} />

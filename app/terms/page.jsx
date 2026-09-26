@@ -26,7 +26,7 @@ export default function TermsPage() {
         </ul>
         <p>You remain responsible for your own decisions and actions.</p>
 
-        <h2>4. Orders and Payment</h2>
+        <h2>4. Orders And Payment</h2>
         <p>You agree to provide accurate order, billing, and contact information.</p>
         <p>Prices and available payment methods are shown during checkout. Applicable taxes or currency-conversion charges may be added where required.</p>
         <p>An order is accepted when we send an order confirmation or begin performing the service. We may reject or cancel an order because of suspected fraud, payment failure, legal restrictions, service unavailability, or information that makes the service impractical to complete.</p>
@@ -46,11 +46,11 @@ export default function TermsPage() {
         <p>We may use artificial intelligence tools to assist with organizing information, translation, drafting, quality review, or preparation of digital reports.</p>
         <p>AI-generated content may contain errors or limitations. Where appropriate, it may be reviewed or edited before delivery. The use of AI does not change the educational, cultural, and non-professional nature of the service.</p>
 
-        <h2>8. Cancellations and Refunds</h2>
+        <h2>8. Cancellations And Refunds</h2>
         <p>Refund eligibility is governed by our Refund Policy and applicable consumer law.</p>
         <p>Because many services are personalized, refunds may be limited after we begin reviewing your information, preparing your report, conducting a consultation, or delivering digital content.</p>
         <p>Nothing in these Terms removes any cancellation, refund, conformity, or other consumer right that cannot legally be waived.</p>
-        <h3>European and UK Consumers</h3>
+        <h3>European And UK Consumers</h3>
         <p>If applicable law provides a 14-day withdrawal period, you may exercise that right unless a lawful exception applies.</p>
         <p>If you expressly request that a paid service begin during the withdrawal period, you may be required to pay for the portion already supplied. Where permitted by law, the withdrawal right may end after the service has been fully performed with your prior express request and acknowledgment.</p>
         <p>For immediately supplied digital content, you may be asked to expressly consent to delivery beginning during the withdrawal period and acknowledge any resulting loss of the withdrawal right where permitted by law.</p>
@@ -88,11 +88,11 @@ export default function TermsPage() {
         <p>Our website may use third-party providers for payment processing, hosting, analytics, advertising, email, databases, AI processing, or other functions.</p>
         <p>Their services may be governed by separate terms and privacy policies. We are not responsible for third-party services outside our reasonable control.</p>
 
-        <h2>13. Disclaimer of Warranties</h2>
+        <h2>13. Disclaimer Of Warranties</h2>
         <p>To the extent permitted by law, the website and services are provided on an “as available” basis.</p>
         <p>We do not warrant that the website will always be uninterrupted, error-free, or free from harmful components. We do not exclude warranties or consumer rights that cannot legally be excluded.</p>
 
-        <h2>14. Limitation of Liability</h2>
+        <h2>14. Limitation Of Liability</h2>
         <p>To the extent permitted by law, JIJI RULING will not be liable for indirect, incidental, special, consequential, or punitive damages arising from your use of the website or services.</p>
         <p>Our total liability relating to a particular paid service will not exceed the amount you paid for that service.</p>
         <p>These limitations do not apply where liability cannot legally be limited, including liability for fraud, intentional misconduct, gross negligence, personal injury caused by negligence, or mandatory consumer rights.</p>
@@ -101,11 +101,11 @@ export default function TermsPage() {
         <p>Our collection and use of personal information are described in our <a href="/privacy">Privacy Policy</a> and Cookie Settings.</p>
         <p>Please review those documents before submitting personal or third-party information.</p>
 
-        <h2>16. Changes to Services or Terms</h2>
+        <h2>16. Changes To Services Or Terms</h2>
         <p>We may update our website, services, prices, or these Terms.</p>
         <p>Changes will apply from the stated effective date and will not retroactively reduce rights relating to an order already accepted unless required by law.</p>
 
-        <h2>17. Governing Law and Disputes</h2>
+        <h2>17. Governing Law And Disputes</h2>
         <p>These Terms are governed by the laws of [GOVERNING JURISDICTION], without regard to conflict-of-law principles.</p>
         <p>Before starting formal proceedings, you agree to contact us and attempt to resolve the dispute informally.</p>
         <p>Nothing in this section prevents a consumer from relying on mandatory rights or bringing a claim in a court available under the laws of the consumer’s place of residence.</p>
