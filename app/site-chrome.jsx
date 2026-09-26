@@ -11,7 +11,7 @@ export function SiteHeader() {
     <header className="site-header">
       <a className="brand" href="/" aria-label="JIJI RULING home">
         <img className="brand-ceramic" src="/brand-ceramic.webp" alt="" width="384" height="384" />
-        <span>JIJI RULING</span>
+        <img className="brand-wordmark" src="/brand-wordmark-transparent.png" alt="JIJI RULING" width="2170" height="725" />
       </a>
 
       <button className="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
@@ -27,6 +27,7 @@ export function SiteHeader() {
             <li><a href="/feng-shui">Feng Shui</a></li>
           </ul>
         </details>
+        <a href="/learn">Learn</a>
         <a href="/philosophy">Philosophy</a>
         <a href="/about">About</a>
         <a href="/#faq">FAQ</a>
@@ -42,7 +43,7 @@ export function SiteFooter() {
   return (
     <footer id="footer">
       <div className="footer-top">
-        <a className="brand footer-brand" href="/" aria-label="JIJI RULING home">JIJI RULING</a>
+        <a className="brand footer-brand" href="/" aria-label="JIJI RULING home"><img className="brand-wordmark" src="/brand-wordmark-transparent.png" alt="JIJI RULING" width="2170" height="725" /><img className="footer-seal-layer" src="/brand-wordmark-transparent.png" alt="" aria-hidden="true" width="2170" height="725" /></a>
         <p>Ancient Patterns,<br />Modern Self-Awareness.</p>
         <nav aria-label="Footer navigation">
           <a href="/privacy">Privacy</a>

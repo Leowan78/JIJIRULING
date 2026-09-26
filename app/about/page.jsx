@@ -1,8 +1,9 @@
+import styles from "./about.module.css";
 export const metadata = { title: "About — JIJI RULING" };
 
 export default function AboutPage() {
   return (
-    <main id="main-content" className="privacy-page">
+    <main id="main-content" className={`privacy-page ${styles.about}`}>
       <article aria-labelledby="about-title">
         <h1 id="about-title">ABOUT JIJI RULING</h1>
         <p><strong>Free your mind from distractions</strong></p>
