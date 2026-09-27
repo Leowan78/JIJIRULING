@@ -3,3 +3,7 @@
 .end .chartCta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;padding:16px 18px;background:#835238;color:#fff8ec;border-radius:6px;font-size:12px;line-height:1.6;text-decoration:none}.end .chartCta span{font-size:18px;letter-spacing:0;margin:0}.end .chartCta:hover{background:#70452f;text-decoration:none}@media(max-width:760px){.end .chartCta{grid-column:1/-1;justify-self:start;margin-top:8px}}
 
 .end{align-items:center}.end .chartCta{margin-top:0;margin-left:auto}
+
+.pillarCharacters>span{display:flex;align-items:center;justify-content:center;gap:10px;min-width:86px;padding:8px 10px;background:#f5f0e7;border-radius:3px}.pillarCharacters b{font:28px/1.2 Georgia,"Songti SC","SimSun",serif;color:#536048}.pillarCharacters small{font-size:12px;color:#655e52}.pillars .pillarLabel{font-size:16px;letter-spacing:.08em;margin:14px 0 6px}
+
+.elementIcon{display:block;width:26px;height:26px;flex-shrink:0;color:#6b715d}
