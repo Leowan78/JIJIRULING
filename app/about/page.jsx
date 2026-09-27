@@ -5,7 +5,7 @@ export default function AboutPage() {
   return (
     <main id="main-content" className={`privacy-page ${styles.about}`}>
       <article aria-labelledby="about-title">
-        <h1 id="about-title">ABOUT JIJI RULING</h1>
+        <div className={styles.titleRow}><h1 id="about-title">ABOUT JIJI RULING</h1><img className={styles.seal} src="/about-blue-seal.webp" alt="吉集如令" width="322" height="722" /></div>
         <p><strong>Free your mind from distractions</strong></p>
         <p>
           JIJI RULING originates from an ancient Chinese philosophical proverb with a history of thousands of years.
