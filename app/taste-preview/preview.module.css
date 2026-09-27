@@ -20,10 +20,12 @@
 .hero { display: grid; grid-template-columns: 1.12fr 1fr; gap: 32px; align-items: center; padding: 65px 0 45px; }
 .eyebrow { margin-bottom: 28px; font-size: 11px; text-transform: uppercase; letter-spacing: .18em; }
 .preview { container-type: inline-size; --title-size: clamp(24px, calc((100cqi - 32px) * .5283 * .071), 48px); }
-.heroCopy { min-width: 0; }
+.heroCopy { min-width: 0; container-type: inline-size; }
 .hero h1 { margin: 0 0 28px; font-size: var(--title-size); line-height: 1.2; }
 .preview :global(#services-title) { font-size: var(--title-size); line-height: 1.2; }
 .hero h1 span { display: block; }
+.preview .hero :global(#preview-title) { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(18px, 7.2cqi, 50px); font-weight: 400; line-height: 1.22; letter-spacing: -.035em; }
+.hero :global(#preview-title) span { white-space: nowrap; }
 .intro { max-width: 430px; font-size: 17px; line-height: 1.8; margin-bottom: 30px; }
 .actions { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
 .primary { display: inline-flex; align-items: center; gap: 28px; min-height: 52px; padding: 14px 22px; background: var(--taste-accent); color: #faf7f2; border-radius: 4px; font-size: 14px; transition: transform 180ms ease; }
@@ -100,3 +102,8 @@
   .preview *, .preview *::before, .preview *::after { transition: none !important; animation: none !important; }
   .poster:hover img, .primary:hover { transform: none; }
 }
+
+.preview .boldHeading, .preview .boldHeading em{font-weight:700}
+
+.preview :global(#services-title), .preview :global(#faq-title) { font-family: Georgia, 'Times New Roman', serif; font-size: var(--title-size); font-weight: 400; line-height: 1.22; letter-spacing: -.035em; }
+.preview :global(#services-title) span { font: inherit; color: inherit; }

@@ -44,7 +44,7 @@ export default function PhilosophyPage() {
             energy pattern interpretation, and self-understanding.
           </p>
           <p>Every reading is designed for self-reflection, personal growth, and deeper self-awareness.</p>
-          <a className="text-link light-link" href="#difference">How we work <span aria-hidden="true">↓</span></a>
+          <a className="text-link light-link" href="#difference">How we work <span aria-hidden="true">↓︎</span></a>
         </div>
       </section>
 
@@ -89,7 +89,7 @@ export default function PhilosophyPage() {
         <div data-reveal="">
           <p className="eyebrow"><span>04</span> Your nature, made clearer</p>
           <h2 id="closing-title">Wisdom To Know <em>Yourself Better</em></h2>
-          <a className="button button-light" href="/#free-reading">Start Your Reading <span aria-hidden="true">↗</span></a>
+          <a className="button button-light" href="/#free-reading">Start Your Reading <span aria-hidden="true">↗︎</span></a>
         </div>
       </section>
     </main>

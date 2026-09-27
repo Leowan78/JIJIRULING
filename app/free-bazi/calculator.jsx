@@ -111,7 +111,7 @@ export default function Calculator({ embedded = false }) {
         <p id="city-status" role="status" className={styles.note}>{place ? `Selected: ${place.label}` : searchStatus}</p>
         {places.length > 0 && <ul className={styles.candidates} aria-label="City search results">{places.map((p) => <li key={p.id}><button type="button" onClick={() => { edit(); setPlace(p); setQuery(p.label); }}>{p.label}</button></li>)}</ul>}
         <label className={styles.check}><input name="consent" type="checkbox" required checked={consent} onChange={(e) => { edit(); setConsent(e.target.checked); }} /><span>I agree to server processing of my birth details to calculate my chart. If enabled, our server receives only a minimized chart for an optional explanation, not my birth date, time, or city. See our <a href="/privacy">Privacy Policy</a>.</span></label>
-        <button className="button form-submit" type="submit" disabled={loading}>{loading ? "Calculating…" : "Calculate My Chart"}<span aria-hidden="true">↗</span></button>
+        <button className="button form-submit" type="submit" disabled={loading}>{loading ? "Calculating…" : "Calculate My Chart"}<span aria-hidden="true">↗︎</span></button>
         <p role="status" className={styles.note}>{loading ? "Calculating your chart. You can edit details to cancel." : ""}</p>
         {error && <p role="alert" className={styles.error}>{error}</p>}
       </form>

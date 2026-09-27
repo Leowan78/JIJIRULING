@@ -33,7 +33,7 @@ export function SiteHeader() {
         <a href="/#faq">FAQ</a>
       </nav>
 
-      <a className="header-cta" href="/free-bazi">Begin <span aria-hidden="true">↗</span></a>
+      <a className="header-cta" href="/free-bazi">Begin <span aria-hidden="true">↗︎</span></a>
     </header>
 
   </>);
