@@ -19,8 +19,35 @@ export default function Report({result,details,onEdit}) {
     <section className={styles.section} aria-labelledby="bazi-chart-title"><p className="eyebrow">02 / Your BaZi chart</p><div className={styles.chartHead}><div className={styles.pillarHeading}><h3 id="bazi-chart-title">Your Four Pillars</h3><img className={styles.pillarLettering} src="/images/report/four-pillars.webp" alt="四柱" width="801" height="516" /></div><span className={styles.badge}>Chinese zodiac · {zodiacLabel(year?.branch)}</span></div>
       {chart.warnings.length>0&&<aside className={styles.notice} aria-label="Calculation limitations"><ul>{chart.warnings.map(w=><li key={w}>{w}</li>)}</ul></aside>}
       <div className={styles.tableFrame}><table className={styles.table} aria-label="Calculated Four Pillars"><thead><tr>{chart.pillars.map(p=><th scope="col" key={p.key} className={p.key==='day'?styles.day:undefined}>{p.label}{p.key==='day'?' · You':''}</th>)}</tr></thead><tbody>{['stem','branch'].map(type=><tr key={type}>{chart.pillars.map(p=><td key={p.key} className={p.key==='day'?styles.day:undefined}><strong style={{color:colors[names.indexOf(p[`${type}Element`])]}}>{p[type]??'—'}</strong><span>{p[type]?p[`${type}Element`]:'Omitted'}</span><small>{type==='stem'?'Heavenly stem':'Earthly branch'}</small></td>)}</tr>)}</tbody></table><div className={styles.chartFoot}>Day Master &nbsp; <b>{chart.dayMaster.stem} · {chart.dayMaster.polarity} {chart.dayMaster.element}</b><span>{chart.complete?'Four pillars · Eight characters':'Partial chart · available pillars only'}</span></div></div>
+      <details className={styles.rules}>
+        <summary>What are the Four Pillars?</summary>
+        <p>The Four Pillars, also known as Ba Zi (Eight Characters), comes from ancient Chinese culture.<br/>It uses your year, month, day and hour of birth.<br/>Each pillar has 2 characters, four pillars make 8 characters total.</p>
+        <ul>
+          <li>Year Pillar: Your family background and early roots</li>
+          <li>Month Pillar: Your youth and parents’ influence</li>
+          <li>Day Pillar: You yourself and your partner (the most important pillar)</li>
+          <li>Hour Pillar: Your children and later life</li>
+        </ul>
+        <p>People study the Four Pillars to understand natural tendencies in personality, opportunities and life path.</p>
+      </details>
       <div className={styles.elements}><div className={styles.elementHeading}><h4>Your Five Elements</h4><img className={styles.elementLettering} src="/images/report/five-elements.webp" alt="五行" width="1103" height="648" /></div><p className={styles.note}>Main-element distribution across your {chart.complete?'Four Pillars':'available pillars'}</p><div className={styles.chart}><div className={styles.donut} style={{background:total?`conic-gradient(${gradient})`:'var(--line)'}} aria-hidden="true"><div><strong>{total}</strong><small>Chart characters</small></div></div><dl className={styles.legend}>{shares.map((s,i)=><div key={s.name}><dt><i style={{background:colors[i]}}/>{s.name} · {chinese[i]}</dt><dd><span className={styles.barTrack} aria-hidden="true"><span style={{width:`${s.percent}%`,background:colors[i]}}/></span><span className={styles.fraction}>{s.count}</span></dd></div>)}</dl></div><p className={styles.note}>Main-element quantity shares, not five-element strength scores. Hidden stems and seasonal weighting are not included. Zero does not mean an element is absent from the full chart.</p></div>
-      <details className={styles.rules}><summary>How to read your chart &amp; calculation rules</summary><p>Each pillar pairs a heavenly stem with an earthly branch. Your day stem is your Day Master. The zodiac follows the calculated year branch and the BaZi solar-year boundary, not January 1.</p><ul><li>Calculated by a deterministic program, not AI.</li><li>Gregorian dates and historical local civil time, including daylight-saving rules; no true solar-time correction.</li><li>The day changes at local midnight. Solar terms set year and month boundaries, with a two-minute uncertainty guard.</li><li>Unknown birth times omit the hour pillar and uncertain seasonal pillars. Ambiguous or nonexistent times are not guessed.</li><li>Historical timezone data, especially before 1970, can be incomplete.</li><li>Rule version: {chart.rulesVersion}.</li></ul></details>
+      <details className={styles.rules}>
+        <summary>What are the Five Elements?</summary>
+        <p>The Five Elements are not physical materials. They are five types of energy patterns from ancient Chinese philosophy: Wood, Fire, Earth, Metal, and Water.</p>
+        <ul>
+          <li>Wood: growth, expansion</li>
+          <li>Fire: warmth, outward energy</li>
+          <li>Earth: support, transformation</li>
+          <li>Metal: consolidation, inward focus</li>
+          <li>Water: flow, storage</li>
+        </ul>
+        <p>They work in two cycles:</p>
+        <ol>
+          <li><strong>Generating cycle (nurture each other)</strong><p>Wood feeds Fire →︎ Fire creates Earth →︎ Earth bears Metal →︎ Metal collects Water →︎ Water nourishes Wood.</p></li>
+          <li><strong>Controlling cycle (balance each other)</strong><p>Wood restrains Earth →︎ Earth contains Water →︎ Water puts out Fire →︎ Fire melts Metal →︎ Metal cuts Wood.</p></li>
+        </ol>
+        <p>When we read Four Pillars (Ba Zi), we check your unique mix of these five energies from your birth time, to see your natural personality and life tendencies.</p>
+      </details>
     </section>
     <section className={styles.reading} aria-labelledby="core-reading-title"><p className="eyebrow">03 / Your core reading</p><h3 id="core-reading-title">Your Core Reading</h3>{reading.personalized?<><p className={styles.summary}>{reading.summary}</p><p className={styles.note}>AI-assisted cultural interpretation. Treat these ideas as reflection prompts, not fixed truths or predictions.</p></>:<p>{reading.notice} No sample interpretation is presented as your personal reading.</p>}</section>
     <section className={styles.human} aria-labelledby="human-reading-title"><div><p className="eyebrow">Go deeper · A human perspective</p><h3 id="human-reading-title">Your Personal<br/>BaZi Blueprint</h3><p>Looking for the fuller picture? A planned paid report, analyzed and written by a human reader, and delivered to your email.</p></div><div><ul><li>A deeper interpretation of your full chart</li><li>Personal patterns, strengths and areas for reflection</li><li>Reflections on career, relationships and personal well-being</li><li>A considered written report you can revisit</li></ul><button type="button" onClick={()=>dialog.current?.showModal()}>Get My Personal BaZi Blueprint ↗︎</button><small>Coming soon · Not available to purchase</small></div></section>
