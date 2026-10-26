@@ -42,18 +42,20 @@ export function setupPage() {
 
   const navToggle = document.querySelector(".nav-toggle");
   const navigation = document.querySelector("#primary-navigation");
-  const shop = document.querySelector(".shop-menu");
-  listen(shop, "pointerenter", (event) => {
-    if (event.pointerType === "mouse") shop.open = true;
-  });
-  listen(shop, "pointerleave", (event) => {
-    if (event.pointerType === "mouse") shop.open = false;
-  });
-  listen(shop, "keydown", (event) => {
-    if (event.key === "Escape") {
-      shop.open = false;
-      shop.querySelector("summary").focus();
-    }
+  const menus = document.querySelectorAll(".shop-menu");
+  menus.forEach((menu) => {
+    listen(menu, "pointerenter", (event) => {
+      if (event.pointerType === "mouse") menu.open = true;
+    });
+    listen(menu, "pointerleave", (event) => {
+      if (event.pointerType === "mouse") menu.open = false;
+    });
+    listen(menu, "keydown", (event) => {
+      if (event.key === "Escape") {
+        menu.open = false;
+        menu.querySelector("summary").focus();
+      }
+    });
   });
 
   listen(navToggle, "click", () => {
@@ -64,7 +66,7 @@ export function setupPage() {
 
   listen(navigation, "click", (event) => {
     if (!(event.target instanceof HTMLAnchorElement)) return;
-    if (shop) shop.open = false;
+    menus.forEach((menu) => { menu.open = false; });
     navToggle?.setAttribute("aria-expanded", "false");
     document.documentElement.classList.remove("nav-open");
   });

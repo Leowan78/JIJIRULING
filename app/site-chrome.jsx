@@ -22,9 +22,17 @@ export function SiteHeader() {
         <details className="shop-menu">
           <summary>Shop</summary>
           <ul aria-label="Shop products">
-            <li><a href="/free-bazi">BaZi Readings</a></li>
-            <li><a href="/compatibility">Compatibility</a></li>
-            <li><a href="/feng-shui">Feng Shui</a></li>
+            <li><a href="/free-bazi">Bracelets &amp; Beads Jewelry</a></li>
+            <li><a href="/compatibility">Home &amp; Space</a></li>
+            <li><a href="/feng-shui">Five Elements Collection</a></li>
+          </ul>
+        </details>
+        <details className="shop-menu">
+          <summary>Discover</summary>
+          <ul aria-label="Discover yourself">
+            <li><a href="/free-bazi">Free BaZi Report</a></li>
+            <li><a href="/free-bazi">Five Elements Profile</a></li>
+            <li><a href="/free-bazi">Chinese Zodiac</a></li>
           </ul>
         </details>
         <a href="/learn">Learn</a>
