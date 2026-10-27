@@ -1,9 +1,9 @@
 import styles from './shop-preview.module.css';
 
 const collections = [
-  ['Wear Your Elements', 'Bracelets & adornments', 'For the qualities you want to carry with you.', 'five-elements-bracelet.png', 'Five Elements bracelet with green, red, yellow, white and blue stone beads'],
-  ['Objects For Your Space', 'Home & Feng Shui objects', 'Thoughtful forms for rest, focus, and daily rituals.', 'home-objects.png', 'Ivory lucky cat and pale green pixiu ornaments on a wooden console'],
-  ['Gifts With Intention', 'Meaningful giving', 'A considered way to mark a new beginning or a shared moment.', 'meaningful-gifts.png', 'Gold traditional lock necklace, charm and bead bracelet in a cream gift arrangement'],
+  ['Wear Your Elements', 'Bracelets & adornments', 'For the qualities you want to carry with you.', 'five-elements-bracelet.webp', 'Five Elements bracelet with green, red, yellow, white and blue stone beads'],
+  ['Objects For Your Space', 'Home & Feng Shui objects', 'Thoughtful forms for rest, focus, and daily rituals.', 'home-objects.webp', 'Ivory lucky cat and pale green pixiu ornaments on a wooden console'],
+  ['Gifts With Intention', 'Meaningful giving', 'A considered way to mark a new beginning or a shared moment.', 'meaningful-gifts.webp', 'Gold traditional lock necklace, charm and bead bracelet in a cream gift arrangement'],
 ];
 
 const products = [
@@ -30,7 +30,7 @@ export default function ShopPreview() {
     </section>
 
     <section className={styles.statement}>
-      <img className={styles.necklaceImage} src="/images/cafe-bracelets/stacked.png" alt="Woman wearing blue-green and red bead bracelets while holding coffee at a European sidewalk cafe" width="1254" height="1254" loading="lazy" />
+      <img className={styles.necklaceImage} src="/images/cafe-bracelets/stacked.webp" alt="Woman wearing blue-green and red bead bracelets while holding coffee at a European sidewalk cafe" width="1254" height="1254" loading="lazy" />
       <div><p className={styles.kicker}>COMPLIMENTARY GUIDANCE</p><h2>Wear What Supports<br/><em>Your Nature</em></h2><p>Every reading remains free. If you wish, it can lead you to a small selection of pieces connected to the elemental themes in your chart or your space.</p><a className={styles.textLink} href="/free-bazi">Discover Your Elements <span aria-hidden="true">↗︎</span></a></div>
     </section>
 
