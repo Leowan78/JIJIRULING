@@ -7,7 +7,7 @@ const collections = [
 ];
 
 const products = [
-  ['Wood', 'Green stone & sandalwood bracelet', '$—', 'wood-bracelet.webp', 'Green and clear bead bracelet with a pale green carved charm'],
+  ['Wood', 'Green Bead & Pixiu Bracelet', '$—', 'wood-bracelet.webp', 'Green and clear bead bracelet with a pale green carved charm'],
   ['Fire', 'Cinnabar-toned charm pendant', '$—', 'fire-bracelet.webp', 'Red, orange and pink bead bracelet with silver accents'],
   ['Earth', 'Ceramic grounding object', '$—', 'earth-bracelet.webp', 'Black and brown bead bracelet with silver accents on a light brown surface'],
 ];
@@ -41,7 +41,7 @@ export default function ShopPreview() {
 
     <section className={styles.featured} id="featured">
       <div className={styles.featuredHead}><p className={styles.kicker}>A FIRST COLLECTION</p><h2>Made To Accompany<br/>Your Everyday Life</h2><p>Image and product details will be added here when your collection is ready.</p></div>
-      <div className={styles.productGrid}>{products.map(([element, title, price, image, alt]) => <article key={element}><img className={styles.productPhoto} src={`/images/products/${image}`} alt={alt} width="1254" height="1254" loading="lazy" /><p className={styles.element}>{element}</p><h3>{title}</h3><span>{price}</span></article>)}</div>
+      <div className={styles.productGrid}>{products.map(([element, title, price, image, alt]) => <article key={element}>{element === 'Wood' ? <a href="/products/wood-bracelet" aria-label="View Green Bead & Pixiu Bracelet"><img className={styles.productPhoto} src={`/images/products/${image}`} alt={alt} width="1254" height="1254" loading="lazy" /></a> : <img className={styles.productPhoto} src={`/images/products/${image}`} alt={alt} width="1254" height="1254" loading="lazy" />}<p className={styles.element}>{element}</p><h3>{element === 'Wood' ? <a className={styles.productLink} href="/products/wood-bracelet">{title}</a> : title}</h3><span>{price}</span></article>)}</div>
     </section>
 
     <section className={styles.closing}><p className={styles.kicker}>BEGIN WITH YOURSELF</p><h2>A Reading Is A Beginning.<br/><em>The Rest Is Yours.</em></h2><a className={styles.primary} href="/free-bazi">Begin Your Free Reading <span aria-hidden="true">↗︎</span></a></section>
