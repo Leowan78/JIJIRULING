@@ -1,4 +1,5 @@
 import ProductGallery from './product-gallery';
+import PurchasePreview from './purchase-preview';
 import styles from './product.module.css';
 
 export const metadata = {
@@ -16,12 +17,8 @@ export default function WoodBraceletPage() {
         <p className={styles.eyebrow}>THE WOOD COLLECTION · 木</p>
         <h1 id="product-title">Green Bead &amp;<br /><em>Pixiu Bracelet</em></h1>
         <p className={styles.themes}>Growth <span>·</span> Renewal <span>·</span> Intention</p>
-        <div className={styles.availability}><span>Coming soon</span><span>Price to be announced</span></div>
         <p className={styles.description}>Deep forest greens meet translucent beads and a softly carved centrepiece. A quiet statement, chosen for the meaning you bring to it.</p>
-        <div className={styles.option}><span>Colour</span><span><i aria-hidden="true" /> Forest green</span></div>
-        <div className={styles.option}><span>Size</span><span>Details coming soon</span></div>
-        <button className={styles.purchase} type="button" disabled>Available soon</button>
-        <p className={styles.purchaseNote}>This piece is not yet available to order.</p>
+        <PurchasePreview />
         <a className={styles.readingLink} href="/free-bazi">Discover your Five Elements <span aria-hidden="true">↗</span></a>
         <div className={styles.accordions}>
           <details open><summary>About this piece</summary><p>A palette of green and clear beads frames a pale green, Pixiu-inspired charm. The polished surfaces and contrasting tones give the piece its distinctive character.</p><p>Wear it as a personal expression of your connection to the Wood collection.</p></details>
@@ -31,6 +28,7 @@ export default function WoodBraceletPage() {
         </div>
       </div>
     </section>
+    <figure className={styles.scene}><img src="/images/products/wood-bracelet-scene.png" width="1254" height="1254" alt="Lifestyle concept of the green bracelet on linen beside a tea cup" loading="lazy"/><figcaption>A quiet moment, made yours. · AI-generated lifestyle concept; refer to the main photograph for product details.</figcaption></figure>
     <section className={styles.story} aria-labelledby="story-title">
       <div className={styles.storyHeading}><p className={styles.eyebrow}>A LITTLE MEANING, EVERY DAY</p><h2 id="story-title">Room to grow.<br /><em>A reason to begin.</em></h2><a href="/learn/five-elements">Explore the Five Elements <span aria-hidden="true">↗</span></a></div>
       <div className={styles.storyText}><p>In the Five Elements tradition, Wood is associated with growth and new beginnings. Here, that idea finds expression in a fresh green palette and a piece you can make your own.</p><p>Let it be a small reminder to approach each day with curiosity, to make space for change, and to return to what matters to you.</p><p className={styles.note}>The meaning is symbolic and personal; wearing this piece does not promise a particular outcome.</p></div>
